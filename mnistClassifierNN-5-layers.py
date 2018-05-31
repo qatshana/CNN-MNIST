@@ -110,6 +110,6 @@ n1=list(range(len(accA)))
 plt.plot(n1,accA,label='accuracy')
 
 # Add title and axis names
-plt.title('5-NN with sigmoid')
+plt.title('5-NN with relu')
 plt.xlabel('iteration')
 plt.ylabel('accuracy')
