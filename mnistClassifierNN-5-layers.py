@@ -107,9 +107,11 @@ with tf.Session() as sess:
     print(sess.run(acc,feed_dict={x:mnist.test.images,y_true:mnist.test.labels}))
 #plot results for accuracy vs. iteration
 n1=list(range(len(accA)))
+fig = plt.figure()
 plt.plot(n1,accA,label='accuracy')
 
 # Add title and axis names
-plt.title('5-NN with relu')
+plt.title('5-NN with RELU')
 plt.xlabel('iteration')
 plt.ylabel('accuracy')
+fig.savefig('accuracy-vs-iteration.png', bbox_inches='tight')

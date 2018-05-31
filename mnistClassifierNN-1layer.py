@@ -68,21 +68,24 @@ init=tf.global_variables_initializer()
 accA=[] # variable to save test data accuracy by iteration
 with tf.Session() as sess:
     sess.run(init)
-    for step in range(10000):
+    for step in range(5000):
         batch_x,batch_y=mnist.train.next_batch(100)
         sess.run(train,feed_dict={x:batch_x,y_true:batch_y})
         # Evaluate the model on test data for each iteration of W and b
         correct_prediction=tf.equal(tf.argmax(y,1),tf.argmax(y_true,1))
         acc=tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
         accA.append(sess.run(acc,feed_dict={x:mnist.test.images,y_true:mnist.test.labels}))
-        #print ("iteration number: %d" %step)
+        print ("iteration number: %d" %step)
     #run final analysis     
     print(sess.run(acc,feed_dict={x:mnist.test.images,y_true:mnist.test.labels}))
 #plot results for accuracy vs. iteration
 n1=list(range(len(accA)))
+fig = plt.figure()
 plt.plot(n1,accA,label='accuracy')
 
 # Add title and axis names
 plt.title('1-NN')
 plt.xlabel('iteration')
 plt.ylabel('accuracy')
+
+fig.savefig('accuracy-vs-iteration-1-layer.png', bbox_inches='tight')
