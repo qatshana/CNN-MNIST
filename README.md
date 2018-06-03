@@ -31,4 +31,4 @@ Spec for each layer:
 
 With 5000 iternation for a batch of 100 and learning rate of .001, we acheived a 0.9901 accuracy. Please see figure below more deails on the improvment in accuracy as number of iteration increases
 
-![alt text](https://github.com/qatshana/CNN-MNIST/blob/master/CNN-5-layer%20performance.png)
+![alt text](https://github.com/qatshana/CNN-MNIST/blob/master/CNN-accuracy-vs-iteration.png) 
