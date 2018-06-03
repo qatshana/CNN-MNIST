@@ -50,7 +50,7 @@ def init_weights(shape):
     return tf.Variable(init_random_dist)
 
 def init_bias(shape):
-init_bias_vals=tf.constant(.1,shape=shape)
+	init_bias_vals=tf.constant(.1,shape=shape)
 	return tf.Variable(init_bias_vals) 
 
 def conv2d(x,W):
@@ -102,6 +102,7 @@ train=optimizer.minimize(cross_entropy)
 init=tf.global_variables_initializer()
 
 steps=5000
+accA=[] # variable to save test data accuracy by iteration
 with tf.Session() as sess:
     sess.run(init)
     for i in range(steps):
@@ -112,10 +113,12 @@ with tf.Session() as sess:
             print("ACCURACY:")
             matches=tf.equal(tf.argmax(y_pred,1),tf.argmax(y_true,1))
             acc=tf.reduce_mean(tf.cast(matches,tf.float32))
-            print(sess.run(acc,feed_dict={x:mnist.test.images,y_true:mnist.test.labels,hold_pro:1}))
+            accT=sess.run(acc,feed_dict={x:mnist.test.images,y_true:mnist.test.labels,hold_pro:1})
+            accA.append(accT)
+            print (accT)
             print('\n')
 
-'''  
+
 #plot results for accuracy vs. iteration
 n1=list(range(len(accA)))
 fig = plt.figure()
@@ -126,4 +129,3 @@ plt.title('5-NN with RELU')
 plt.xlabel('iteration')
 plt.ylabel('accuracy')
 fig.savefig('accuracy-vs-iteration.png', bbox_inches='tight')
-'''
