@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 '''
 Ther is an issue with using input_data and loading the set
 '''
-%matplotlib inline
+#%matplotlib inline
 
 
 from tensorflow.examples.tutorials.mnist import input_data
